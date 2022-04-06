@@ -1,0 +1,2 @@
+MaSP     TenSP              Thuong Hieu        LoaiSP      Gia      
+2        b                  b                  b           3.0     1        a                  a                  a           4.0     
