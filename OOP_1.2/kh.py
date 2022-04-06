@@ -46,8 +46,11 @@ class QLKH:
     
     def timkiemTenKH(self,key):
         kh = None
-        if self.soluongKH() > 0:
-            for i in self.getlistKH():
-                if i.tenKH == key:
+        if self.soluongKH(QLKH) > 0:
+            for i in self.getlistKH(QLKH):
+                if i.tenKH.upper() == key.upper():
                     kh = i
+        else:
+            print('chua co kh')
         return kh
+        

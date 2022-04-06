@@ -54,13 +54,17 @@ class QLSP:
                     
         f.close()
         
-    def timkiemtenSP(self,key):
-        list = []
-        if self.soluongSP() > 0:
-            for i in self.getlistSP():
-                if key.upper() in i.tenSP.upper():
-                    list.append(i)
-        return list
+    def timkiemSP(self,key):
+        sp = None
+        if self.soluongSP(QLSP) > 0:
+            for i in self.getlistSP(QLSP):
+                if key == i.tenSP:
+                    sp = i
+        else:
+            print('chua co sp')
+        return sp
+        
+        
  
         
     

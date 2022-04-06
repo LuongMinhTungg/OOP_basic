@@ -1,3 +1,4 @@
+from mailbox import NotEmptyError
 from sp import QLSP
 from kh import QLKH
 import datetime
@@ -13,6 +14,7 @@ class banHang:
     QLKH = QLKH()
     list = []
     km = 0
+    '''
     def banHang(self,kh,sp):
         s = None
         if QLKH.soluongKH(QLKH) > 0:
@@ -42,7 +44,35 @@ class banHang:
                     print('Khong co khach hang tuong ung')
         else:
             print('chua co khach hang')
-    
+    '''
+    def khuyenmai(self,tenKH,sp,km):
+        km = self.km
+        if sp!= None:
+            QLSP.getlistSP(QLSP).remove(sp)
+            self.list.append(sp)
+            self.km = self.km + 1
+            if self.km <= 5:
+                tg = datetime.datetime.now()                              
+                hd = HD(tenKH,sp.tenSP,sp.gia/2,tg)
+                self.listHD.append(hd)
+            else:
+                tg = datetime.datetime.now()
+                hd = HD(tenKH,sp.tenSP,sp.gia,tg)
+                self.listHD.append(hd)
+    def banHang(self,tenKH,tenSP):
+        sp = None
+        try:
+            if QLKH.timkiemTenKH(QLKH,tenKH).tenKH == tenKH.upper():
+                if QLSP.timkiemSP(QLSP,tenSP).tenSP == tenSP:
+                    sp = QLSP.timkiemSP(QLSP,tenSP)
+                    self.khuyenmai(tenKH,sp,self.km)
+        except AttributeError:
+            print('chua co sp hoac khach hang')
+        else:
+            print('Mua hang thanh cong')
+                
+            
+                        
     def getlistHD(self):
         return self.listHD
     
